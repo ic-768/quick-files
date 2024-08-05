@@ -2,8 +2,8 @@ local myBuf = vim.api.nvim_create_buf(false, true)
 local windowId = nil
 
 local files = {
-	"~/DotFiles/termShortcuts.md",
-	"~/DotFiles/vimShortcuts.md",
+	term = "~/DotFiles/termShortcuts.md",
+	vim = "~/DotFiles/vimShortcuts.md",
 }
 
 local function open_floating_window()
@@ -19,24 +19,40 @@ local function open_floating_window()
 		style = "minimal",
 	}
 
+	local keys = {}
+	for k, _ in pairs(files) do
+		table.insert(keys, k)
+	end
+
+	vim.api.nvim_buf_set_lines(myBuf, 0, -1, true, keys)
+
 	windowId = vim.api.nvim_open_win(myBuf, true, opts)
+end
+
+local function close_window()
+	vim.api.nvim_win_close(windowId, false)
+	windowId = nil
 end
 
 local function toggle_window()
 	if windowId then
-		vim.api.nvim_win_close(windowId, false)
-		windowId = nil
+		close_window()
 	else
 		open_floating_window()
 	end
 end
 
-local function read_to_buffer()
-	vim.api.nvim_buf_set_lines(myBuf, 0, -1, true, { "abc", "def" })
-end
-
-local function append_to_buffer()
-	vim.api.nvim_buf_set_lines(myBuf, -1, -1, true, { "abc", "def" })
+local function navigate_to_file()
+	local line = vim.fn.getline(".")
+	local path = files[line]
+	if path then
+		toggle_window()
+		vim.api.nvim_command("edit " .. path)
+	else
+		print("No path associated with this line")
+	end
 end
 
 vim.keymap.set("n", "<leader>x", toggle_window, { noremap = true, silent = true })
+vim.keymap.set("n", "<CR>", navigate_to_file, { buffer = myBuf, noremap = true, silent = true })
+vim.keymap.set("n", "<Esc>", close_window, { buffer = myBuf, noremap = true, silent = true })
