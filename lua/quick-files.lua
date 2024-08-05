@@ -2,9 +2,13 @@ local myBuf = vim.api.nvim_create_buf(false, true)
 local windowId = nil
 
 local files = {}
+local toggleMap = "<leader>q"
 
-local function setup(user_files)
-	files = user_files
+local function setup(opts)
+	files = opts.files
+	if opts.toggleMap then
+		toggleMap = opts.toggleMap
+	end
 end
 
 local function open_floating_window()
@@ -54,7 +58,7 @@ local function navigate_to_file()
 	end
 end
 
-vim.keymap.set("n", "<leader>q", toggle_window, { noremap = true, silent = true })
+vim.keymap.set("n", toggleMap, toggle_window, { noremap = true, silent = true })
 vim.keymap.set("n", "<CR>", navigate_to_file, { buffer = myBuf, noremap = true, silent = true })
 vim.keymap.set("n", "<Esc>", close_window, { buffer = myBuf, noremap = true, silent = true })
 
