@@ -7,16 +7,22 @@ The file list is defined during setup, as per the example below.
 
 ### Installation (lazy.nvim)
 
-Install as you would normally, and in the setup function provide a table with `{label = file path}`:
+Install as you would normally. The setup function accepts two parameters:
+
+- files : a table with `{label you want to show = file path of the file}`:
+- toggleMap: which keybinding you want to toggle the window.
 
 ```
 return {
-	"ic-768/quick-files",
+	dir = "~/Code/quick-files",
 	name = "quick-files",
 	config = function()
 		require("quick-files").setup({
-			term = "~/DotFiles/termShortcuts.md",
-			vim = "~/DotFiles/vimShortcuts.md",
+			files = {
+				term = "~/DotFiles/termShortcuts.md",
+				vim = "~/DotFiles/vimShortcuts.md",
+			},
+			toggleMap = "<leader>q",
 		})
 	end,
 }
