@@ -57,3 +57,5 @@ end
 vim.keymap.set("n", "<leader>x", toggle_window, { noremap = true, silent = true })
 vim.keymap.set("n", "<CR>", navigate_to_file, { buffer = myBuf, noremap = true, silent = true })
 vim.keymap.set("n", "<Esc>", close_window, { buffer = myBuf, noremap = true, silent = true })
+
+return { setup = setup }
