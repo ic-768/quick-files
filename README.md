@@ -10,7 +10,7 @@ The file list is defined during setup, as per the example below.
 Install as you would normally. The setup function accepts two parameters:
 
 - `files` : a table with `{label you want to show = path of the file}`:
-- `toggleMap`: which keybinding you want to toggle the window.
+- `toggle_map`: which keybinding you want to toggle the window.
 
 ```
 return {
@@ -22,7 +22,7 @@ return {
 				term = "~/DotFiles/termShortcuts.md",
 				vim = "~/DotFiles/vimShortcuts.md",
 			},
-			toggleMap = "<leader>q",
+			toggle_map = "<leader>q",
 		})
 	end,
 }

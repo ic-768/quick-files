@@ -1,5 +1,5 @@
-local myBuf = vim.api.nvim_create_buf(false, true)
-local windowId = nil
+local my_buf = vim.api.nvim_create_buf(false, true)
+local window_id = nil
 
 local files = {}
 
@@ -21,18 +21,18 @@ local function open_floating_window()
 		table.insert(keys, k)
 	end
 
-	vim.api.nvim_buf_set_lines(myBuf, 0, -1, true, keys)
+	vim.api.nvim_buf_set_lines(my_buf, 0, -1, true, keys)
 
-	windowId = vim.api.nvim_open_win(myBuf, true, opts)
+	window_id = vim.api.nvim_open_win(my_buf, true, opts)
 end
 
 local function close_window()
-	vim.api.nvim_win_close(windowId, false)
-	windowId = nil
+	vim.api.nvim_win_close(window_id, false)
+	window_id = nil
 end
 
 local function toggle_window()
-	if windowId then
+	if window_id then
 		close_window()
 	else
 		open_floating_window()
@@ -53,9 +53,9 @@ end
 local function setup(opts)
 	files = opts.files
 
-	vim.keymap.set("n", opts.toggleMap or "<leader>q", toggle_window, { noremap = true, silent = true })
-	vim.keymap.set("n", "<CR>", navigate_to_file, { buffer = myBuf, noremap = true, silent = true })
-	vim.keymap.set("n", "<Esc>", close_window, { buffer = myBuf, noremap = true, silent = true })
+	vim.keymap.set("n", opts.toggle_map or "<leader>q", toggle_window, { noremap = true, silent = true })
+	vim.keymap.set("n", "<CR>", navigate_to_file, { buffer = my_buf, noremap = true, silent = true })
+	vim.keymap.set("n", "<Esc>", close_window, { buffer = my_buf, noremap = true, silent = true })
 end
 
 return { setup = setup }
