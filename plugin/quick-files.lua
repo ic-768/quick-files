@@ -1,10 +1,11 @@
 local myBuf = vim.api.nvim_create_buf(false, true)
 local windowId = nil
 
-local files = {
-	term = "~/DotFiles/termShortcuts.md",
-	vim = "~/DotFiles/vimShortcuts.md",
-}
+local files = {}
+
+local function setup(user_files)
+	files = user_files
+end
 
 local function open_floating_window()
 	local width = math.floor(vim.o.columns * 0.8)
