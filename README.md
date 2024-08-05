@@ -25,4 +25,4 @@ return {
 
 This configuration for example lets me pick any of the two files for editing:
 
-![screenshot of window](https://imgur.com/a/Crt6hHs)
+![screenshot of window](https://i.imgur.com/SonP6vS.png)
