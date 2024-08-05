@@ -14,7 +14,7 @@ Install as you would normally. The setup function accepts two parameters:
 
 ```
 return {
-	dir = "~/Code/quick-files",
+	"ic-768/quick-files",
 	name = "quick-files",
 	config = function()
 		require("quick-files").setup({
