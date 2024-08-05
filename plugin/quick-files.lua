@@ -1,6 +1,10 @@
 local myBuf = vim.api.nvim_create_buf(false, true)
-local isOpen = false
 local windowId = nil
+
+local files = {
+	"~/DotFiles/termShortcuts.md",
+	"~/DotFiles/vimShortcuts.md",
+}
 
 local function open_floating_window()
 	local width = math.floor(vim.o.columns * 0.8)
@@ -16,11 +20,15 @@ local function open_floating_window()
 	}
 
 	windowId = vim.api.nvim_open_win(myBuf, true, opts)
-	isOpen = true
 end
 
-local function close_floating_window()
-	vim.api.nvim_win_close(windowId, false)
+local function toggle_window()
+	if windowId then
+		vim.api.nvim_win_close(windowId, false)
+		windowId = nil
+	else
+		open_floating_window()
+	end
 end
 
 local function read_to_buffer()
@@ -31,7 +39,4 @@ local function append_to_buffer()
 	vim.api.nvim_buf_set_lines(myBuf, -1, -1, true, { "abc", "def" })
 end
 
-vim.keymap.set("n", "<leader>f", open_floating_window, { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>g", close_floating_window, { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>x", read_to_buffer, { buffer = myBuf, noremap = true, silent = true })
-vim.keymap.set("n", "<leader>c", append_to_buffer, { buffer = myBuf, noremap = true, silent = true })
+vim.keymap.set("n", "<leader>x", toggle_window, { noremap = true, silent = true })
