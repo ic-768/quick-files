@@ -1,4 +1,4 @@
-local init = require("init")
+local init = require("quick-files.init")
 local M = {}
 
 M.my_buf = vim.api.nvim_create_buf(false, true)

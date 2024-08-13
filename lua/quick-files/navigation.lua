@@ -1,5 +1,5 @@
-local window = require("window")
-local init = require("init")
+local window = require("quick-files.window")
+local init = require("quick-files.init")
 local M = {}
 
 M.navigate_to_file = function()

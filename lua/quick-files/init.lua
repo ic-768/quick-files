@@ -21,7 +21,7 @@ end
 M.setup = function(opts)
 	M.files = opts.files
 
-	local window = require("window")
+	local window = require("quick-files.window")
 
 	vim.keymap.set("n", opts.toggle_map or "<leader>q", window.toggle_window, { noremap = true, silent = true })
 	--vim.keymap.set("n", "<CR>", navigation.navigate_to_file, { buffer = window.my_buf, noremap = true, silent = true })
