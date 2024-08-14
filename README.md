@@ -24,8 +24,8 @@ return {
   	require("quick-files").setup({
   	  keys = {
   	  	toggle = "<leader>j",
-  	  	navigate = "<CR>",
   	  	add_entry = "<leader>J",
+  	  	navigate = "<CR>",
   	  	remove_entry = "dd",
   	  },
   	})
