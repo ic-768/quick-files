@@ -4,7 +4,7 @@
 
 I made this plugin because I love harpoon, but it scopes files down to project directories, meaning that I can't share the _same file list_ between _different projects_.
 
-Using this plugin, I can quickly edit my neovim config, get to my repos directory, mess with my linux configuration - **on the fly** - no matter where I am in neovim.
+Using this plugin, I can quickly edit my neovim config / get to my repos directory / mess with my linux configuration - **on the fly** - no matter where I am in neovim.
 It's rough around the edges and nowhere near as polished as harpoon, but it was a good way to learn some lua and hack around in neovim.
 Also lots of fun!
 
