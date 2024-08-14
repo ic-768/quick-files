@@ -53,13 +53,32 @@ M.add_entry = function()
 	end
 end
 
+local navigate_to_file = function()
+	local window = require("quick-files.window")
+	local line = vim.api.nvim_get_current_line() -- Get the entire line where the cursor is
+	local path = line:match("%S+$") -- Extract the last non-whitespace sequence (file path)
+
+	if path then
+		-- Check if the path exists before opening
+		if vim.fn.filereadable(path) then
+			window.close_window()
+			vim.cmd("edit " .. path)
+		else
+			print("File does not exist: " .. path)
+		end
+	else
+		print("No file path found on the current line")
+	end
+end
+
 M.setup = function(opts)
 	local window = require("quick-files.window")
 
 	vim.keymap.set("n", opts.toggle_map or "<leader>q", window.toggle_window, { noremap = true, silent = true })
-	--vim.keymap.set("n", "<CR>", navigation.navigate_to_file, { buffer = window.my_buf, noremap = true, silent = true })
+	vim.keymap.set("n", "<leader>Q", M.add_entry, { noremap = true, silent = true })
+
+	vim.keymap.set("n", "<CR>", navigate_to_file, { buffer = window.my_buf, noremap = true, silent = true })
 	vim.keymap.set("n", "<Esc>", window.close_window, { buffer = window.my_buf, noremap = true, silent = true })
-	vim.keymap.set("n", "<leader>G", M.add_entry, { noremap = true, silent = true })
 end
 
 return M
