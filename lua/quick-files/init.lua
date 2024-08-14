@@ -57,6 +57,42 @@ M.add_entry = function()
 	end
 end
 
+M.remove_entry = function()
+	local line = vim.api.nvim_get_current_line()
+
+	-- Extract key from the line
+	local key = line:match("^(%S+):")
+	if not key then
+		print("No valid key found on the current line")
+		return
+	end
+
+	-- Load existing state
+	local state = M.load_state()
+
+	-- Remove the entry
+	if state[key] then
+		state[key] = nil
+
+		-- Save updated state
+		local file = io.open(M.config_file, "w+")
+		if file then
+			file:write(vim.fn.json_encode(state))
+			file:close()
+		else
+			error("Could not open file: " .. M.config_file)
+		end
+
+		-- Remove the line from the buffer
+		local cursor_line = vim.api.nvim_win_get_cursor(0)[1]
+		vim.api.nvim_buf_set_lines(0, cursor_line - 1, cursor_line, false, {})
+
+		print("Entry removed")
+	else
+		print("Key not found in JSON state")
+	end
+end
+
 local navigate_to_file = function()
 	local window = require("quick-files.window")
 	local line = vim.api.nvim_get_current_line() -- Get the entire line where the cursor is
@@ -83,6 +119,7 @@ M.setup = function(opts)
 
 	vim.keymap.set("n", "<CR>", navigate_to_file, { buffer = window.my_buf, noremap = true, silent = true })
 	vim.keymap.set("n", "<Esc>", window.close_window, { buffer = window.my_buf, noremap = true, silent = true })
+	vim.keymap.set("n", "dd", M.remove_entry, { buffer = window.my_buf, noremap = true, silent = true })
 end
 
 return M
