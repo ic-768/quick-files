@@ -2,9 +2,15 @@
 
 ## Fast, no-nonsense access to your most frequented files.
 
-Use `<leader-J>` to add a file. You will be prompted for a label to easily identify it.
-Press `<leader-j>` to pull up the file window, and `<CR>` to load the file under your cursor.
-Remove entries with `dd`.
+I made this plugin because I love harpoon, but it scopes files down to project directories. So I couldn't share the same file list between different projects.
+
+Using this plugin, I can quickly edit my neovim config on the fly, get to my repos directory ASAP, etc. no matter where I am in neovim. It's rough around the edges and nowhere near as polished as harpoon, but it was a good way to learn some lua and hack around in neovim. Also lots of fun!
+
+## How to use
+
+`<leader-J>` adds the current file to the file list. You will be prompted for a label to easily identify it.
+`<leader-j>` pulls up the file window, and `<CR>` loads the file under your cursor.
+You can remove entries with `dd`.
 
 ### Installation (lazy.nvim shown)
 
