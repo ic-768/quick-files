@@ -3,9 +3,10 @@
 ## Fast, no-nonsense access to your most frequented files.
 
 Use `<leader-J>` to add a file. You will be prompted for a label to easily identify it.
-Press the `<leader-j>` to select a file, and `<CR>` to load it. Remove entries with `dd`.
+Press `<leader-j>` to pull up the file window, and `<CR>` to load the file under your cursor.
+Remove entries with `dd`.
 
-### Installation (lazy.nvim)
+### Installation (lazy.nvim shown)
 
 Install as you would normally. The setup function accepts an optional table called `keys` for remapping. The values shown are the defaults and can be omitted - feel free to change them as you wish:
 
