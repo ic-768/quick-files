@@ -34,14 +34,18 @@ M.add_entry = function()
 		return
 	end
 
-	-- Get the current file path (adjust as needed if this is not the desired file path)
-	local currentFilePath = vim.api.nvim_buf_get_name(0)
+	local current_file_path = vim.api.nvim_buf_get_name(0)
+
+	-- Fallback to working directory if buffer name is empty
+	if current_file_path == "" then
+		current_file_path = vim.fn.getcwd()
+	end
 
 	-- Load the existing state or initialize it
 	local state = M.load_state()
 
 	-- Add the new entry
-	state[label] = currentFilePath
+	state[label] = current_file_path
 
 	-- Save the updated state
 	local file = io.open(M.config_file, "w+")
