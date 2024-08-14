@@ -2,11 +2,13 @@
 
 ## Fast, no-nonsense access to your most frequented files.
 
-I made this plugin because I love harpoon, but it scopes files down to project directories. So I couldn't share the same file list between different projects.
+I made this plugin because I love harpoon, but it scopes files down to project directories, meaning that I can't share the _same file list_ between _different projects_.
 
-Using this plugin, I can quickly edit my neovim config on the fly, get to my repos directory ASAP, etc. no matter where I am in neovim. It's rough around the edges and nowhere near as polished as harpoon, but it was a good way to learn some lua and hack around in neovim. Also lots of fun!
+Using this plugin, I can quickly edit my neovim config, get to my repos directory, mess with my linux configuration - **on the fly** - no matter where I am in neovim.
+It's rough around the edges and nowhere near as polished as harpoon, but it was a good way to learn some lua and hack around in neovim.
+Also lots of fun!
 
-## How to use
+## How do I use this?
 
 `<leader-J>` adds the current file to the file list. You will be prompted for a label to easily identify it.
 `<leader-j>` pulls up the file window, and `<CR>` loads the file under your cursor.
