@@ -2,35 +2,33 @@
 
 ## Fast, no-nonsense access to your most frequented files.
 
-Simply press the keybinding (`<leader-q>` by default) to select a file, and hit `<CR>` to load it.
-The file list is defined during setup, as per the example below.
+Use `<leader-J>` to add a file. You will be prompted for a label to easily identify it.
+Press the `<leader-j>` to select a file, and `<CR>` to load it. Remove entries with `dd`.
 
 ### Installation (lazy.nvim)
 
-Install as you would normally. The setup function accepts two parameters:
-
-- `files` : a table with `{label you want to show = path of the file}`:
-- `toggle_map`: which keybinding you want to toggle the window.
+Install as you would normally. The setup function accepts an optional table called `keys` for remapping. The values shown are the defaults and can be omitted - feel free to change them as you wish:
 
 ```
 return {
-	"ic-768/quick-files",
-	name = "quick-files",
-	config = function()
-		require("quick-files").setup({
-			files = {
-				term = "~/DotFiles/termShortcuts.md",
-				vim = "~/DotFiles/vimShortcuts.md",
-			},
-			toggle_map = "<leader>q",
-		})
-	end,
+  "ic-768/quick-files",
+  name = "quick-files",
+  config = function()
+  	require("quick-files").setup({
+  	  keys = {
+  	  	toggle = "<leader>j",
+  	  	navigate = "<CR>",
+  	  	add_entry = "<leader>J",
+  	  	remove_entry = "dd",
+  	  },
+  	})
+  end,
 }
 
 ```
 
-This configuration for example lets me pick any of the two files for editing:
+Open up a couple of files, add them as entries, and you should have a populated window when you toggle the plugin:
 
-![screenshot of window](https://i.imgur.com/SonP6vS.png)
+![screenshot of window](https://i.imgur.com/phyJgjX.png)
 
 #### HAPPY EDITING 🎉
