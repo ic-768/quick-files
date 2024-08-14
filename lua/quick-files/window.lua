@@ -5,6 +5,7 @@ M.my_buf = vim.api.nvim_create_buf(false, true)
 M.window_id = nil
 
 M.open_floating_window = function()
+	init.files = { vim = "test" }
 	local width = math.floor(vim.o.columns * 0.8)
 	local height = math.floor(vim.o.lines * 0.8)
 
@@ -18,7 +19,9 @@ M.open_floating_window = function()
 	}
 
 	local keys = {}
+	vim.api.nvim_echo({ { "files are: " .. vim.inspect(init.files), "Normal" } }, false, {})
 	for k, _ in pairs(init.files) do
+		vim.api.nvim_echo({ { "item is: " .. k } }, false, {})
 		table.insert(keys, k)
 	end
 

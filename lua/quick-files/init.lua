@@ -9,7 +9,6 @@ M.save_state = function()
 	local state = { test = 1 }
 	local file_path = M.get_config_file()
 	local file = io.open(file_path, "w+")
-	print("file", file)
 	if file then
 		file:write(vim.fn.json_encode(state))
 		file:close()
@@ -19,8 +18,6 @@ M.save_state = function()
 end
 
 M.setup = function(opts)
-	M.files = opts.files
-
 	local window = require("quick-files.window")
 
 	vim.keymap.set("n", opts.toggle_map or "<leader>q", window.toggle_window, { noremap = true, silent = true })
