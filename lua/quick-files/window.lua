@@ -22,7 +22,6 @@ M.open_floating_window = function()
 
 	local string_array = utils.format_keys(init.files)
 	vim.api.nvim_buf_set_lines(M.my_buf, 0, -1, true, string_array)
-
 	M.window_id = vim.api.nvim_open_win(M.my_buf, true, opts)
 end
 

@@ -15,7 +15,13 @@ M.load_state = function()
 			error("Failed to decode JSON: " .. err)
 		end
 	else
-		error("Could not open file: " .. M.config_file)
+		file = io.open(M.config_file, "w")
+		if file then
+			file:close()
+			return {} -- Return an empty table if the file is newly created
+		else
+			error("Could not create file: " .. M.config_file)
+		end
 	end
 end
 
