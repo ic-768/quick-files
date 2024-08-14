@@ -1,27 +1,28 @@
 local file = require("quick-files.file")
 local utils = require("quick-files.utils")
-local init = require("quick-files.init")
 
 local M = {}
 local window_id = nil
 M.my_buf = vim.api.nvim_create_buf(false, true)
 
 local open_window = function()
-	init.files = file.load_state()
+	file.files = file.load_state()
 
-	local width = math.floor(vim.o.columns * 0.8)
-	local height = math.floor(vim.o.lines * 0.8)
+	local width = utils.max(math.floor(vim.o.columns * 0.3), 80)
+	local height = utils.max(math.floor(vim.o.lines * 0.2), 20)
 
 	local opts = {
+		title = "quick-files",
 		relative = "editor",
 		width = width,
 		height = height,
 		col = math.floor((vim.o.columns - width) / 2),
 		row = math.floor((vim.o.lines - height) / 2),
 		style = "minimal",
+		border = "rounded",
 	}
 
-	local string_array = utils.format_keys(init.files)
+	local string_array = utils.format_keys(file.files)
 	vim.api.nvim_buf_set_lines(M.my_buf, 0, -1, true, string_array)
 	window_id = vim.api.nvim_open_win(M.my_buf, true, opts)
 end

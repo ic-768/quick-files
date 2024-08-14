@@ -24,4 +24,12 @@ M.format_keys = function(keys)
 	end)
 end
 
+M.max = function(a, b)
+	if a > b then
+		return a
+	else
+		return b
+	end
+end
+
 return M

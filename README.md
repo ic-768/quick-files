@@ -36,6 +36,6 @@ return {
 
 Open up a couple of files, add them as entries, and you should have a populated window when you toggle the plugin:
 
-![screenshot of window](https://i.imgur.com/phyJgjX.png)
+![screenshot of window](https://i.imgur.com/o99h6Vm.png)
 
 #### HAPPY EDITING 🎉
