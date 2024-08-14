@@ -1,6 +1,6 @@
 local M = {}
 
-M.map = function(t, func)
+local map = function(t, func)
 	local result = {}
 	for k, v in pairs(t) do
 		table.insert(result, func(k, v))
@@ -19,7 +19,7 @@ M.format_keys = function(keys)
 	end
 
 	-- Map function to format each key-value pair
-	return M.map(keys, function(key, value)
+	return map(keys, function(key, value)
 		return string.format("%s:%s %s", key, string.rep(" ", max_key_length - #key + 2), value)
 	end)
 end

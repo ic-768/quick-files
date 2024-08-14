@@ -86,7 +86,6 @@ M.remove_entry = function()
 		-- Remove the line from the buffer
 		local cursor_line = vim.api.nvim_win_get_cursor(0)[1]
 		vim.api.nvim_buf_set_lines(0, cursor_line - 1, cursor_line, false, {})
-
 		print("Entry removed")
 	else
 		print("Key not found in JSON state")
@@ -95,7 +94,7 @@ end
 
 M.navigate_to_file = function()
 	local window = require("quick-files.window")
-	local line = vim.api.nvim_get_current_line() -- Get the entire line where the cursor is
+	local line = vim.api.nvim_get_current_line()
 	local path = line:match("%S+$") -- Extract the last non-whitespace sequence (file path)
 
 	if path then
