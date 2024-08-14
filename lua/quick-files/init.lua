@@ -1,19 +1,32 @@
 local M = {}
 M.files = {}
 
-M.get_config_file = function()
-	return vim.fn.stdpath("data") .. "/quick-files.json"
+M.config_file = vim.fn.stdpath("data") .. "/quick-files.json"
+
+M.load_state = function()
+	local file = io.open(M.config_file, "r")
+	if file then
+		local content = file:read("*a")
+		file:close()
+		local state, err = vim.fn.json_decode(content)
+		if state then
+			return state
+		else
+			error("Failed to decode JSON: " .. err)
+		end
+	else
+		error("Could not open file: " .. M.config_file)
+	end
 end
 
 M.save_state = function()
 	local state = { test = 1 }
-	local file_path = M.get_config_file()
-	local file = io.open(file_path, "w+")
+	local file = io.open(M.config_file, "w+")
 	if file then
 		file:write(vim.fn.json_encode(state))
 		file:close()
 	else
-		error("Could not open file: " .. file_path)
+		error("Could not open file: " .. M.config_file)
 	end
 end
 

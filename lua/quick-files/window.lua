@@ -1,3 +1,4 @@
+local utils = require("quick-files.utils")
 local init = require("quick-files.init")
 local M = {}
 
@@ -5,7 +6,8 @@ M.my_buf = vim.api.nvim_create_buf(false, true)
 M.window_id = nil
 
 M.open_floating_window = function()
-	init.files = { vim = "test" }
+	init.files = init.load_state()
+
 	local width = math.floor(vim.o.columns * 0.8)
 	local height = math.floor(vim.o.lines * 0.8)
 
@@ -18,14 +20,8 @@ M.open_floating_window = function()
 		style = "minimal",
 	}
 
-	local keys = {}
-	vim.api.nvim_echo({ { "files are: " .. vim.inspect(init.files), "Normal" } }, false, {})
-	for k, _ in pairs(init.files) do
-		vim.api.nvim_echo({ { "item is: " .. k } }, false, {})
-		table.insert(keys, k)
-	end
-
-	vim.api.nvim_buf_set_lines(M.my_buf, 0, -1, true, keys)
+	local string_array = utils.format_keys(init.files)
+	vim.api.nvim_buf_set_lines(M.my_buf, 0, -1, true, string_array)
 
 	M.window_id = vim.api.nvim_open_win(M.my_buf, true, opts)
 end
