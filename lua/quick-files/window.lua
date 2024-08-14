@@ -1,3 +1,4 @@
+local file = require("quick-files.file")
 local utils = require("quick-files.utils")
 local init = require("quick-files.init")
 local M = {}
@@ -5,8 +6,8 @@ local M = {}
 M.my_buf = vim.api.nvim_create_buf(false, true)
 M.window_id = nil
 
-M.open_floating_window = function()
-	init.files = init.load_state()
+M.open_window = function()
+	init.files = file.load_state()
 
 	local width = math.floor(vim.o.columns * 0.8)
 	local height = math.floor(vim.o.lines * 0.8)
@@ -34,7 +35,7 @@ M.toggle_window = function()
 	if M.window_id then
 		M.close_window()
 	else
-		M.open_floating_window()
+		M.open_window()
 	end
 end
 
