@@ -1,4 +1,4 @@
-# ⚡QUICKFILES
+# ⚡QUICK-FILES
 
 ## Fast, no-nonsense access to your most frequented files.
 
