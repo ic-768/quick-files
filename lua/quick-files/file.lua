@@ -93,14 +93,14 @@ M.remove_entry = function()
 end
 
 M.navigate_to_file = function()
-	local window = require("quick-files.window")
+	local ui = require("quick-files.ui")
 	local line = vim.api.nvim_get_current_line()
 	local path = line:match("%S+$") -- Extract the last non-whitespace sequence (file path)
 
 	if path then
 		-- Check if the path exists before opening
 		if vim.fn.filereadable(path) then
-			window.close_window()
+			ui.close_window()
 			vim.cmd("edit " .. path)
 		else
 			print("File does not exist: " .. path)

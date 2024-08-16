@@ -25,6 +25,13 @@ local open_window = function()
 	local string_array = utils.format_keys(file.files)
 	vim.api.nvim_buf_set_lines(M.my_buf, 0, -1, true, string_array)
 	window_id = vim.api.nvim_open_win(M.my_buf, true, opts)
+
+	-- Highlight the first word in each line
+	local ns_id = vim.api.nvim_create_namespace("QuickFileLabel")
+	for i, line in ipairs(string_array) do
+		local col_end = line:find(":") or #line
+		vim.api.nvim_buf_add_highlight(M.my_buf, ns_id, "Aqua", i - 1, 0, col_end)
+	end
 end
 
 M.close_window = function()
