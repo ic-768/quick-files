@@ -22,14 +22,6 @@ M.setup = function(opts)
 		file.remove_entry,
 		{ buffer = ui.my_buf, noremap = true, silent = true }
 	)
-
-	-- to change working directory
-	vim.cmd([[
-  augroup ChangeDirectory
-    autocmd!
-    autocmd BufEnter * cd %:p:h
-  augroup END
-]])
 end
 
 return M
