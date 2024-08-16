@@ -4,7 +4,8 @@ local M = {}
 
 M.setup = function(opts)
 	local window = require("quick-files.window")
-	local keys = opts.keys or {}
+
+	local keys = opts and opts.keys or {}
 
 	vim.keymap.set("n", keys.toggle or "<leader>j", window.toggle_window, { noremap = true, silent = true })
 	vim.keymap.set("n", keys.add_entry or "<leader>J", file.add_entry, { noremap = true, silent = true })
