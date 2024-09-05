@@ -26,6 +26,8 @@ local open_window = function()
 	vim.api.nvim_buf_set_lines(M.my_buf, 0, -1, true, string_array)
 	window_id = vim.api.nvim_open_win(M.my_buf, true, opts)
 
+	vim.api.nvim_set_option_value("wrap", false, { win = window_id })
+
 	-- Highlight the first word in each line
 	local ns_id = vim.api.nvim_create_namespace("QuickFileLabel")
 	for i, line in ipairs(string_array) do
